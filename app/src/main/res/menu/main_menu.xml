@@ -4,12 +4,12 @@
 
     <item
         android:id="@+id/menu_flight"
-        android:icon="@drawable/ic_launcher_foreground"
+        android:icon="@drawable/ic_airplane"
         android:title="flight"
         app:showAsAction="always" />
     <item
         android:id="@+id/menu_schedule"
-        android:icon="@drawable/abc_vector_test"
+        android:icon="@drawable/ic_calendar"
         android:title="calendar"
         app:showAsAction="always" />
 </menu>
