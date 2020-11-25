@@ -26,7 +26,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
 
     @Override
 
-    //called for once when initially creating a new database.
+    //called once when initially creating a new database.
     public void onCreate(SQLiteDatabase db) {
         //String createTableStatement= "CREATE TABLE TRAVEL_TASK_TABLE (COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, COLUMN_TASKNAME TEXT, COLUMN_TASKDATE TEXT)";
         String createTableStatement= "CREATE TABLE " + TRAVEL_TASK_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TASKNAME + " TEXT, " + COLUMN_TASKDATE + " TEXT)";
@@ -46,8 +46,7 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         //ContentValues are like hashmap, or Intent.
         ContentValues cv= new ContentValues();
         cv.put(COLUMN_TASKNAME,taskadded.getTaskName());
-        //casting long to String, which can then be stored in db. 
-        cv.put(COLUMN_TASKDATE,Long.toString(taskadded.getDate()));
+        cv.put(COLUMN_TASKDATE,taskadded.getStringDate());
         long insert = sqldb.insert(TRAVEL_TASK_TABLE, null, cv);
         //use insert to tell if it has been inserted successfully.
         if (insert== -1){
@@ -87,9 +86,8 @@ public class TaskDBHelper extends SQLiteOpenHelper {
                 int task_id= cursor.getInt(0);
                 String item_name=cursor.getString(1);
                 String item_date=cursor.getString(2);
-                long item_date_long= Long.parseLong(item_date);
                 //use extracted info to create new Task object.
-                Task item= new Task(item_name,item_date_long,task_id);
+                Task item= new Task(item_name,item_date,task_id);
                 //add the new task object to the list.
                 task_collection.add(item);
             }while(cursor.moveToNext());
@@ -102,13 +100,10 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         return task_collection;
     }
 
-    public List<Task> getTaskByDate(long date_selected){
-        String dateInString= Long.toString(date_selected);
+    public List<Task> getTaskByDate(String date_selected){
         List task_collection= new ArrayList();
-        Log.i("TaskDBHelper", "getTaskByDate: "+ dateInString);
-        //todo: how to filter out date.
-        String query_by_date_command= "SELECT * FROM " + TRAVEL_TASK_TABLE + " WHERE " + COLUMN_TASKDATE + "= " + dateInString;
-        //String query_by_date_command= "SELECT * FROM " + TRAVEL_TASK_TABLE + " WHERE " + COLUMN_TASKDATE + "= 1605901664433";
+        Log.i("TaskDBHelper", "getTaskByDate: "+ date_selected);
+        String query_by_date_command= "SELECT * FROM " + TRAVEL_TASK_TABLE + " WHERE " + COLUMN_TASKDATE + "= '" + date_selected+ "'";
         Log.i("TaskDBHelper", "getTaskByDate:    "+query_by_date_command);
         SQLiteDatabase db= this.getReadableDatabase();
         //cursor the result.
@@ -120,9 +115,8 @@ public class TaskDBHelper extends SQLiteOpenHelper {
                 int task_id= cursor.getInt(0);
                 String item_name=cursor.getString(1);
                 String item_date=cursor.getString(2);
-                long item_date_long= Long.parseLong(item_date);
                 //use extracted info to create new Task object.
-                Task item= new Task(item_name,item_date_long,task_id);
+                Task item= new Task(item_name,item_date,task_id);
                 //add the new task object to the list.
                 task_collection.add(item);
             }while(cursor.moveToNext());

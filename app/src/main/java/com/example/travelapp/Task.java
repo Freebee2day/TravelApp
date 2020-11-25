@@ -5,12 +5,12 @@ import java.util.Date;
 public class Task {
 
     String taskName;
-    long date;
+    String string_date;
     int id;
 
-    public Task(String taskName, long date, int id) {
+    public Task(String taskName, String string_date, int id) {
         this.taskName = taskName;
-        this.date = date;
+        this.string_date = string_date;
         this.id = id;
     }
 
@@ -26,12 +26,12 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public long getDate() {
-        return date;
+    public String getStringDate() {
+        return string_date;
     }
 
-    public void setDate(long date) {
-        this.date = date;
+    public void setDate(String string_date) {
+        this.string_date = string_date;
     }
 
     public int getTaskId() {
@@ -39,12 +39,12 @@ public class Task {
     }
 
     //printing out member variables.
-    @Override
+/*    @Override
     public String toString() {
         return "Task{" +
                 "taskName='" + taskName + '\'' +
                 ", date=" + date +
                 ", id=" + id +
                 '}';
-    }
+    }*/
 }
