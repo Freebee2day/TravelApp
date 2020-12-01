@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.codepath.asynchttpclient.AsyncHttpClient;
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
+
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class FlightFragment extends Fragment {
 
@@ -102,5 +115,81 @@ public class FlightFragment extends Fragment {
                 Toast.makeText(getContext(), "About to search flight!!", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+
+                Request request = new Request.Builder()
+                        .url("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/SFO-sky/LAX-sky/2021-03-01?inboundpartialdate=2021-03-12")
+                        .get()
+                        .addHeader("x-rapidapi-key", "4770880e42msha6850af97acf908p19dc77jsnecae3a323fc1")
+                        .addHeader("x-rapidapi-host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")
+                        .build();
+
+                try  {
+
+                    Response response = client.newCall(request).execute();
+                    String jsonData= response.body().string();
+                    JSONObject local_j= new JSONObject(jsonData);
+                    Log.i("FlightFragment", "working well!!!!!!");
+                    JSONArray arr_quote= local_j.getJSONArray("Quotes");
+                    //todo: need to check if array is empty.
+                    JSONObject object_a = arr_quote.getJSONObject(0);
+                    int min_price= object_a.getInt("MinPrice");
+
+                    JSONObject outbound_obj= object_a.getJSONObject("OutboundLeg");
+
+                    String depart_date= outbound_obj.getString("DepartureDate");
+                    System.out.println(depart_date);
+                    JSONArray carrier_arr= outbound_obj.getJSONArray("CarrierIds");
+                    System.out.println(carrier_arr.get(0));
+                    System.out.println(min_price);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("FlightFragment", "run: fail to get object", e);
+                }
+            }
+        });
+
+        thread.start();
+
+
+
+/*        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                OkHttpClient client = new OkHttpClient();
+
+                Request request = new Request.Builder()
+                        //need to change the request URL
+                        .url("https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/SFO-sky/JFK-sky/2021-01-08")
+                        .get()
+                        .addHeader("x-rapidapi-key", "4770880e42msha6850af97acf908p19dc77jsnecae3a323fc1")
+                        .addHeader("x-rapidapi-host", "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com")
+                        .build();
+                try  {
+
+                    Response response = client.newCall(request).execute();
+                    String jsonData= response.body().string();
+                    JSONObject local_j= new JSONObject(jsonData);
+                    JSONArray arr_quote= local_j.getJSONArray("Quotes");
+                    JSONObject object_a = arr_quote.getJSONObject(0);
+                    int min_price= object_a.getInt("MinPrice");
+                    System.out.println(min_price);
+
+                } catch (Exception e) {
+                    Log.e("FlightFragment", "run: pheobe is dumb", e);
+                }
+            }
+        });
+
+        thread.start();*/
     }
+
+
 }
