@@ -1,17 +1,21 @@
-package com.example.travelapp;
+package com.example.travelapp.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.travelapp.Adapter.TaskAdapter;
+import com.example.travelapp.Classes.Task;
+import com.example.travelapp.Fragments.ScheduleFragment;
+import com.example.travelapp.R;
+import com.example.travelapp.TaskDBHelper;
 
 import java.text.Format;
 import java.text.SimpleDateFormat;

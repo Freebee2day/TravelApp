@@ -1,4 +1,4 @@
-package com.example.travelapp;
+package com.example.travelapp.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.travelapp.Activities.DailyActivity;
+import com.example.travelapp.R;
 
 import java.util.Calendar;
 
@@ -22,6 +23,7 @@ public class ScheduleFragment extends Fragment {
     public static final String TAG="ScheduleFragment";
     public static final String SELECTED_DATE="selected_date";
     CalendarView cvSchedule;
+
 
     public ScheduleFragment() {
         // Required empty public constructor
@@ -48,7 +50,7 @@ public class ScheduleFragment extends Fragment {
                 c3.set(year,month,dayOfMonth);
                 long selected_date_in_long= c3.getTime().getTime();
 
-                Intent i = new Intent(getContext(),DailyActivity.class);
+                Intent i = new Intent(getContext(), DailyActivity.class);
                 i.putExtra(SELECTED_DATE,selected_date_in_long);
                 Log.i(TAG, "onSelectedDayChange: "+ selected_date_in_long);
                 startActivity(i);

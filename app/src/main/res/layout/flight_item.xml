@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlFlightItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvFlightItemDep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        tools:text="Departing City" />
+
+    <TextView
+        android:id="@+id/tvFlightItemArr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/tvFlightItemDep"
+        android:text="TextView"
+        tools:text="Arriving City" />
+
+    <TextView
+        android:id="@+id/tvFlightItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        tools:text="FlightPrice" />
+
+    <TextView
+        android:id="@+id/tvFlightItemAirline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFlightItemDep"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        tools:text="AirlineCarrier" />
+
+    <TextView
+        android:id="@+id/tvFlightItemDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvFlightItemArr"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/tvFlightItemAirline"
+        tools:text="Departing Date" />
+</RelativeLayout>
