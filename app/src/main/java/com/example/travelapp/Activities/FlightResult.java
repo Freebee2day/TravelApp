@@ -35,7 +35,6 @@ public class FlightResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight_result);
 
-
         //populate flights result:
         result_flights=new ArrayList<>();
 
@@ -58,10 +57,8 @@ public class FlightResult extends AppCompatActivity {
                     add_flight_task=new Task("Task for flight error",f.getDeparture_date(),-1);
                 }
 
-                boolean success= DailyActivity.db_helper_instance.addTask(add_flight_task);
-                DailyActivity.task_collection.add(add_flight_task);
-                DailyActivity.ta_intance.notifyItemInserted(DailyActivity.task_collection.size()-1);
-                //DailyActivity.ta_intance.notifyDataSetChanged();
+                boolean success= MainActivity.db_helper_instance.addTask(add_flight_task);
+                MainActivity.task_collection.add(add_flight_task);
             }
         };
 
