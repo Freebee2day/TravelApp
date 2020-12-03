@@ -25,12 +25,13 @@ import java.util.List;
 
 public class DailyActivity extends AppCompatActivity {
 
+    public static TaskDBHelper db_helper_instance;
+    public static List<Task> task_collection;
+    public static TaskAdapter ta_intance;
+
     Button btnBack, btnAdd;
     EditText etAddTask;
     TextView tvDaily;
-    TaskDBHelper db_helper_instance;
-    List<Task> task_collection;
-    TaskAdapter ta_intance;
     RecyclerView rvDaily;
     TaskAdapter.TaskLongPress tatlp;
 
@@ -49,7 +50,7 @@ public class DailyActivity extends AppCompatActivity {
         //formating date: long -> date -> string
         final long selected_date= getIntent().getExtras().getLong(ScheduleFragment.SELECTED_DATE);
         Date in_date= new Date(selected_date);
-        Format df = new SimpleDateFormat("MM-dd-yyyy");
+        Format df = new SimpleDateFormat("yyyy-MM-dd");
         final String date_in_string= df.format(in_date);
         tvDaily.setText(date_in_string);
 
@@ -98,7 +99,7 @@ public class DailyActivity extends AppCompatActivity {
                 }else {
                     try {
                         add_task = new Task(taskName, date_in_string, -1);
-                        //Toast.makeText(DailyActivity.this, add_task.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DailyActivity.this, add_task.getStringDate(), Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         //Toast.makeText(DailyActivity.this, "Error creating new task", Toast.LENGTH_SHORT).show();
                         add_task = new Task("error", date_in_string, -1);

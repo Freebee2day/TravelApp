@@ -11,8 +11,10 @@ import android.widget.Toast;
 
 import com.example.travelapp.Adapter.FlightAdapter;
 import com.example.travelapp.Classes.Flight;
+import com.example.travelapp.Classes.Task;
 import com.example.travelapp.Fragments.FlightFragment;
 import com.example.travelapp.R;
+import com.example.travelapp.TaskDBHelper;
 
 import org.json.JSONObject;
 
@@ -26,6 +28,8 @@ import okhttp3.Response;
 public class FlightResult extends AppCompatActivity {
     RecyclerView rvFlightResult;
     static List <Flight> result_flights;
+    FlightAdapter.OneClickToAdd octa_instance;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +38,32 @@ public class FlightResult extends AppCompatActivity {
 
         //populate flights result:
         result_flights=new ArrayList<>();
+
+        ////create add button listener for each view holder => so selected flight can be added to calendar
+        //in this case, the vhIndex (viewholder position is not necessary as long as we have the flight object)
+        octa_instance=new FlightAdapter.OneClickToAdd() {
+            @Override
+            public void shortClicked(int vhIndex, Flight f) {
+                Log.i("FlightResult", "provide_vhPos_flight_info: "+vhIndex+"   "+ f.getPrice());
+                //create a new task (of taking a flight) to save in Calendar db
+                Task add_flight_task;
+
+                try{
+                    String taskname= "From "+ f.getDepCity() +" to "+f.getArrCity()+ " with "+ f.getCarrier();
+                    //id for task doesn't matter because will autopopulated by the db system.
+                    add_flight_task=new Task(taskname,f.getDeparture_date(),-1);
+                    Toast.makeText(FlightResult.this, add_flight_task.getTaskName(), Toast.LENGTH_SHORT).show();
+
+                }catch (Exception e){
+                    add_flight_task=new Task("Task for flight error",f.getDeparture_date(),-1);
+                }
+
+                boolean success= DailyActivity.db_helper_instance.addTask(add_flight_task);
+                DailyActivity.task_collection.add(add_flight_task);
+                DailyActivity.ta_intance.notifyItemInserted(DailyActivity.task_collection.size()-1);
+                //DailyActivity.ta_intance.notifyDataSetChanged();
+            }
+        };
 
 
         String query_URL_from_FlightFragment= getIntent().getStringExtra(FlightFragment.QUERY_URL);
@@ -76,7 +106,7 @@ public class FlightResult extends AppCompatActivity {
         if(result_flights.size()==0){
             Toast.makeText(this, "No flight meeting requirement available", Toast.LENGTH_LONG).show();
         }
-        FlightAdapter fa_instance=new FlightAdapter(result_flights,this);
+        FlightAdapter fa_instance=new FlightAdapter(result_flights,this,octa_instance);
 
         rvFlightResult=findViewById(R.id.rvFlightResult);
         rvFlightResult.setAdapter(fa_instance);
