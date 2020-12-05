@@ -21,10 +21,11 @@ Required Must-have Stories
 
  
 #### Result Activity
-	[x]Provide filter for prices, dates, and routes, maybe service provider
-	[ ] Sort by flight duration, price, taking off time
+	
+	[x] Sort by flight duration, price, taking off time
 	[x] Planning Activities
 	[x] Calendar, planning, organization 
+	[ ]Provide filter for prices, dates, and routes, maybe service provider
  
 ### Optional Nice-to-have Stories
 Details on the destination location
