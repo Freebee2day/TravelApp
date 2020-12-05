@@ -16,21 +16,15 @@ Product Specs
 Required Must-have Stories
 
 #### Search Activity
-	Find flight information by typing in destination
-	This could be 
-	Enter inbound information with dates
-	Flight Suggestions
+	[x] Find flight information by typing in destination
+	[x] Enter inbound information with dates
 
  
 #### Result Activity
-	Provide filter for prices, dates, and routes, maybe service provider
-	Sort by flight duration, price, taking off time
-	Activities to do in city, and resort, 
-	Planning Activities
-	Flight
-	Calendar, planning, organization 
-	Try to mimic google calendar 
-	Hotel/details
+	[x]Provide filter for prices, dates, and routes, maybe service provider
+	[ ] Sort by flight duration, price, taking off time
+	[x] Planning Activities
+	[x] Calendar, planning, organization 
  
 ### Optional Nice-to-have Stories
 Details on the destination location
