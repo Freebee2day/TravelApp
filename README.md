@@ -55,3 +55,6 @@ client.close();
     `GET`    | /continents/byId/:id | gets specific continent by :id
     `GET`    | /regions | gets all regions
     `GET`    | /regions/byId/:id | gets specific region by :id
+    
+    
+    https://imgur.com/a/VtIK7Dw
