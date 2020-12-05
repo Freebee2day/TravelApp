@@ -1,4 +1,63 @@
 "# TravelApp" 
+
+## Overview
+### Description
+Provides the user with travel information
+App Evaluation
+Category: Travel
+Mobile: This app would be primarily developed for mobile.
+Story: Allows users to get dates and prices for flights. 
+Market: This is for people who are planning for their trips.
+Habit: This app is mostly seasonal for each individual, and more so for those who travel a lot. 
+Scope: We want to launch this for the leisure travel individuals first, we would like to create other features to allows users to plan a travel all within the same app
+API: This will utilize the Skyscanner API
+Product Specs
+### 1. User Stories (Required and Optional)
+Required Must-have Stories
+
+#### Search Activity
+	Find flight information by typing in destination
+	This could be 
+	Enter inbound information with dates
+	Flight Suggestions
+
+ 
+#### Result Activity
+	Provide filter for prices, dates, and routes, maybe service provider
+	Sort by flight duration, price, taking off time
+	Activities to do in city, and resort, 
+	Planning Activities
+	Flight
+	Calendar, planning, organization 
+	Try to mimic google calendar 
+	Hotel/details
+ 
+### Optional Nice-to-have Stories
+Details on the destination location
+Pictures, available hotel, to-do recommendations
+Utilize hotels API
+
+### 2. Screen Archetypes
+Search Activity
+Find flight information by typing in destination
+This could be 
+Enter inbound information with dates
+Flight Suggestions
+Result Activity
+Quotes of the 
+Provide filter for prices, dates, and routes
+Details Screen
+Information about the city weather, popular destination
+Hotel information
+
+### 3. Navigation
+Tab Navigation (Tab to Screen)
+Search
+ 
+Flow Navigation (Screen to Screen)
+Search -> Results upon request
+Result -> Details upon request
+
 ## Schema 
 ### Models
 #### Post
@@ -57,4 +116,6 @@ client.close();
     `GET`    | /regions/byId/:id | gets specific region by :id
     
     
+ ### Walk through of the app
+ 
     https://imgur.com/a/VtIK7Dw
