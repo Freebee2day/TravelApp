@@ -26,10 +26,8 @@ import java.util.List;
 
 public class DailyActivity extends AppCompatActivity {
 
-    //public static TaskDBHelper db_helper_instance;
-    //public static List<Task> task_collection;
+
     public static TaskAdapter ta_intance;
-    //public static Context ct;
 
     Button btnBack, btnAdd;
     EditText etAddTask;
@@ -69,9 +67,7 @@ public class DailyActivity extends AppCompatActivity {
             }
         };
 
-        //db_helper_instance=new TaskDBHelper(DailyActivity.this);
         //populate tasks item by date.
-        //task_collection= new ArrayList<>();
         MainActivity.task_collection=MainActivity.db_helper_instance.getTaskByDate(date_in_string);
         //set up adapter.
         ta_intance=new TaskAdapter(MainActivity.task_collection,DailyActivity.this,tatlp);
@@ -102,7 +98,7 @@ public class DailyActivity extends AppCompatActivity {
                 }else {
                     try {
                         add_task = new Task(taskName, date_in_string, -1);
-                        Toast.makeText(DailyActivity.this, add_task.getStringDate(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(DailyActivity.this, add_task.getStringDate(), Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         //Toast.makeText(DailyActivity.this, "Error creating new task", Toast.LENGTH_SHORT).show();
                         add_task = new Task("error", date_in_string, -1);

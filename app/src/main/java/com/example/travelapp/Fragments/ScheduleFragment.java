@@ -25,6 +25,7 @@ public class ScheduleFragment extends Fragment {
     CalendarView cvSchedule;
 
 
+
     public ScheduleFragment() {
         // Required empty public constructor
     }
@@ -56,6 +57,8 @@ public class ScheduleFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+
 
     }
 }

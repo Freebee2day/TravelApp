@@ -20,13 +20,15 @@ public class Flight {
     int price;
     String depCity;
     String arrCity;
+    boolean done;
 
-    public Flight(int price,String departure_date,String carrier,String depCity,String arrCity) {
+    public Flight(int price,String departure_date,String carrier,String depCity,String arrCity,boolean done) {
         this.price = price;
         this.carrier=carrier;
         this.departure_date=departure_date;
         this.arrCity=arrCity;
         this.depCity=depCity;
+        this.done=done;
     }
 
     public static ArrayList<Flight> fromJobjToFlightArr(JSONObject jobj) throws JSONException {
@@ -63,8 +65,10 @@ public class Flight {
             int carrier_id=c_id_arr.getInt(0);
             String airline= carrierIdToName(carrier_id);
 
+            boolean completed = false;
+
             //construct Flight object
-            Flight single_flight_object= new Flight(price,processed_d_date,airline,departing_city,arriving_city);
+            Flight single_flight_object= new Flight(price,processed_d_date,airline,departing_city,arriving_city, completed);
 
             //add Flight object to result_collection
             result_collection.add(single_flight_object);
@@ -107,5 +111,9 @@ public class Flight {
 
     public String getArrCity() {
         return arrCity;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
     }
 }

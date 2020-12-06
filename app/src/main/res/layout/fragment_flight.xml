@@ -32,7 +32,7 @@
 
     <EditText
         android:id="@+id/etDepCity"
-        android:layout_width="181dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvGreeting"
         android:layout_alignParentStart="true"
@@ -40,11 +40,11 @@
         android:layout_marginTop="30dp"
         android:background="@drawable/with_round_box_around"
         android:ems="10"
-        android:hint="Departing City" />
+        android:hint="Departing Airport Code" />
 
     <EditText
         android:id="@+id/etArrCity"
-        android:layout_width="181dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etDepCity"
         android:layout_alignParentStart="true"
@@ -52,16 +52,16 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/with_round_box_around"
         android:ems="10"
-        android:hint="Arriving City" />
+        android:hint="Arriving Airport Code" />
 
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/etDepDate"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginStart="0dp"
-        android:layout_marginBottom="138dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="#009688"
         android:text="search" />
 

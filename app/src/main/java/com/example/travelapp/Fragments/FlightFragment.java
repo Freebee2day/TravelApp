@@ -105,7 +105,9 @@ public class FlightFragment extends Fragment {
 
                     String query_URL = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsedates/v1.0/US/USD/en-US/" + DepCity + "-sky/" + ArrCity + "-sky/" + d;
                     i_flight.putExtra(QUERY_URL, query_URL);
-
+                    etArrCity.setText("");
+                    etDepCity.setText("");
+                    etDepDate.setText("");
                     startActivity(i_flight);
                 }
             }
