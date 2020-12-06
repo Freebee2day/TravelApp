@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.travelapp.Activities.MainActivity;
 import com.example.travelapp.R;
 import com.example.travelapp.Classes.Task;
 
@@ -65,9 +66,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHoler> {
             cbTask=itemView.findViewById(R.id.cbTask);
         }
 
-        public void bind(final Task x) {
+        public void bind(final Task single_task) {
             //display task name
-            cbTask.setText(x.getTaskName());
+            cbTask.setText(single_task.getTaskName());
+
+
+            //todo: populate new  cross out look when coming back!!!!
+            if(single_task.get_is_completed()){
+                cbTask.setChecked(true);
+                cbTask.setPaintFlags(cbTask.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
+            }
+
 
             //check the box the cross out completed task
             cbTask.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -75,10 +84,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHoler> {
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if(isChecked){
                         cbTask.setPaintFlags(cbTask.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
-                        x.set
+                        single_task.setIs_completed(true);
+                        //single_task.setIs_completed(1);
+                        MainActivity.db_helper_instance.update_completion_status_in_db(single_task);
                     }else{
                         cbTask.setPaintFlags(cbTask.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
+                        single_task.setIs_completed(false);
+                        //single_task.setIs_completed(0);
                     }
+                    //update the info in db
+                    MainActivity.db_helper_instance.update_completion_status_in_db(single_task);
                 }
             });
 

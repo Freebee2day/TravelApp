@@ -76,6 +76,7 @@ public class DailyActivity extends AppCompatActivity {
 
 
 
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,19 +98,32 @@ public class DailyActivity extends AppCompatActivity {
                     return;
                 }else {
                     try {
-                        add_task = new Task(taskName, date_in_string, -1);
+                        add_task = new Task(taskName, date_in_string, -1,false);
+                        //add_task = new Task(taskName, date_in_string, -1,0);
                         //Toast.makeText(DailyActivity.this, add_task.getStringDate(), Toast.LENGTH_SHORT).show();
                     } catch (Exception e) {
                         //Toast.makeText(DailyActivity.this, "Error creating new task", Toast.LENGTH_SHORT).show();
-                        add_task = new Task("error", date_in_string, -1);
+                        add_task = new Task("error", date_in_string, -1,false);
+                        //add_task = new Task("error", date_in_string, -1,0);
                     }
 
                     boolean success = MainActivity.db_helper_instance.addTask(add_task);
 
                     etAddTask.setText("");
-                    //update the data in app.
+                    //need to add the flight from database, not the one created here (the one created here has id of -1; so need to fetch from database to have a valid id.)
+                    //ask it to refresh => how come notify adapter doesn't refresh?  need to set up new adapter.
+
+
+                    /*MainActivity.task_collection.clear();
+                    MainActivity.task_collection=MainActivity.db_helper_instance.getTaskByDate(date_in_string);
+                    ta_intance=new TaskAdapter(MainActivity.task_collection,DailyActivity.this,tatlp);
+                    rvDaily.setAdapter(ta_intance);
+                    rvDaily.setLayoutManager(new LinearLayoutManager(DailyActivity.this));
+*/
                     MainActivity.task_collection.add(add_task);
-                    ta_intance.notifyItemInserted(MainActivity.task_collection.size() - 1);
+                    ta_intance.notifyDataSetChanged();
+                    //ta_intance.notifyDataSetChanged();
+                    //ta_intance.notifyItemInserted(MainActivity.task_collection.size() - 1);
                     //ta_intance.notify();
                 }
             }

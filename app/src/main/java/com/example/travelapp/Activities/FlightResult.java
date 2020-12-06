@@ -54,14 +54,21 @@ public class FlightResult extends AppCompatActivity {
                     String taskname= "From "+ f.getDepCity() +" to "+f.getArrCity()+ " with "+ f.getCarrier();
                     //id for task doesn't matter because will autopopulated by the db system.
 
-                    add_flight_task=new Task(taskname,f.getDeparture_date(),-1);
+                    add_flight_task=new Task(taskname,f.getDeparture_date(),-1,false);
+                    //add_flight_task=new Task(taskname,f.getDeparture_date(),-1,0);
+
                     Toast.makeText(FlightResult.this, "Flight successfully added to calendar!", Toast.LENGTH_SHORT).show();
 
                 }catch (Exception e){
-                    add_flight_task=new Task("Task for flight error",f.getDeparture_date(),-1);
+                    add_flight_task=new Task("Task for flight error",f.getDeparture_date(),-1,false);
+
+                    //add_flight_task=new Task("Task for flight error",f.getDeparture_date(),-1,0);
                 }
 
                 boolean success= MainActivity.db_helper_instance.addTask(add_flight_task);
+
+                //todo: need to add the flight from database, not the one created here.
+                //ask it to refresh
                 MainActivity.task_collection.add(add_flight_task);
 
                 //navigate to the Calendar view after creating and adding the task.
