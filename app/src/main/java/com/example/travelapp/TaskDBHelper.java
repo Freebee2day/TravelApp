@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.travelapp.Activities.MainActivity;
 import com.example.travelapp.Classes.Task;
 
 import java.util.ArrayList;
@@ -33,7 +34,6 @@ public class TaskDBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //String createTableStatement= "CREATE TABLE TRAVEL_TASK_TABLE (COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, COLUMN_TASKNAME TEXT, COLUMN_TASKDATE TEXT)";
         String createTableStatement = "CREATE TABLE " + TRAVEL_TASK_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TASKNAME + " TEXT, " + COLUMN_IS_COMPLETED + " BOOL, " + COLUMN_TASKDATE + " TEXT)";
-        //String createTableStatement = "CREATE TABLE " + TRAVEL_TASK_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_TASKNAME + " TEXT, " + COLUMN_IS_COMPLETED + " INT, " + COLUMN_TASKDATE + " TEXT)";
         db.execSQL(createTableStatement);
     }
 
@@ -51,7 +51,6 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         ContentValues cv= new ContentValues();
         cv.put(COLUMN_TASKNAME,taskadded.getTaskName());
         cv.put(COLUMN_IS_COMPLETED,taskadded.get_is_completed());
-        //cv.put(COLUMN_IS_COMPLETED,taskadded.get_is_completed());
         cv.put(COLUMN_TASKDATE,taskadded.getStringDate());
         long insert = sqldb.insert(TRAVEL_TASK_TABLE, null, cv);
         //use insert to tell if it has been inserted successfully.
@@ -78,12 +77,11 @@ public class TaskDBHelper extends SQLiteOpenHelper {
     }
 
     //define a method to update the completion status of task in db.
-/*    public void update_completion_status_in_db(int id, boolean current_status){
+    public void update_completion_status_in_db(int id, boolean current_status){
         SQLiteDatabase sqldb=this.getWritableDatabase();
         String update_command= "UPDATE "+ TRAVEL_TASK_TABLE + " SET " + COLUMN_IS_COMPLETED + " = " + current_status + " WHERE " + COLUMN_ID + " = " + id;
-        Log.i("TaskDBHelper", "update_completion_status_in_db: ++++++    " + update_command);
         sqldb.execSQL(update_command);
-    }*/
+    }
 
     public void update_completion_status_in_db(Task task_ToBeEdited){
         SQLiteDatabase sqldb=this.getWritableDatabase();
@@ -94,22 +92,8 @@ public class TaskDBHelper extends SQLiteOpenHelper {
             is_completed_in_int=0;
         }
         String update_command= "UPDATE TRAVEL_TASK_TABLE SET COLUMN_IS_COMPLETED = " + is_completed_in_int + " WHERE COLUMN_ID = " + task_ToBeEdited.getTaskId();
-        //String update_command= "UPDATE "+ TRAVEL_TASK_TABLE + " SET " + COLUMN_IS_COMPLETED + " = " + task_ToBeEdited.get_is_completed() + " WHERE " + COLUMN_ID + " = " + task_ToBeEdited.getTaskId();
-        Log.i("TaskDBHelper", "update_completion_status_in_db: ++++++    " + update_command);
         sqldb.execSQL(update_command);
     }
-
-/*    public void updateTask(Task task_to_be_updated) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COLUMN_ID, task_to_be_updated.getTaskId());
-        contentValues.put(COLUMN_IS_COMPLETED, task_to_be_updated.get_is_completed());
-        String whereClause = COLUMN_ID+ "=?";
-        String whereArgs[] = {String.valueOf(task_to_be_updated.getTaskId())};
-        db.update(TRAVEL_TASK_TABLE, contentValues, whereClause, whereArgs);
-        Log.i("TASKDBHLper", "printing out info of updatedTask: "+ );
-    }*/
-
 
 
 
@@ -129,7 +113,6 @@ public class TaskDBHelper extends SQLiteOpenHelper {
                 //no boolean value from database => stored as integer 1 or 0
                 //thus need to determine if it's 1 (true) or 0 (false)
                 boolean item_completion = cursor.getInt(2) == 1 ? true :false;
-                //int item_completion=cursor.getInt(2);
                 String item_date=cursor.getString(3);
                 //use extracted info to create new Task object.
                 Task item= new Task(item_name,item_date,task_id,item_completion);
@@ -144,6 +127,8 @@ public class TaskDBHelper extends SQLiteOpenHelper {
         db.close();
         return task_collection;
     }
+
+
 
     //define a method to read or retrieve filtered data from db.
     public List<Task> getTaskByDate(String date_selected){
@@ -164,7 +149,6 @@ public class TaskDBHelper extends SQLiteOpenHelper {
                 //no boolean value from database => stored as integer 1 or 0
                 //thus need to determine if it's 1 (true) or 0 (false)
                 boolean item_completion = cursor.getInt(2) == 1 ? true :false;
-                //int item_completion=cursor.getInt(2);
                 String item_date=cursor.getString(3);
 
 

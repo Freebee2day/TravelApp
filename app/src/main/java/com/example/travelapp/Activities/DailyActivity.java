@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -114,14 +115,13 @@ public class DailyActivity extends AppCompatActivity {
                     //ask it to refresh => how come notify adapter doesn't refresh?  need to set up new adapter.
 
 
-                    /*MainActivity.task_collection.clear();
+                    MainActivity.task_collection.clear();
                     MainActivity.task_collection=MainActivity.db_helper_instance.getTaskByDate(date_in_string);
                     ta_intance=new TaskAdapter(MainActivity.task_collection,DailyActivity.this,tatlp);
                     rvDaily.setAdapter(ta_intance);
                     rvDaily.setLayoutManager(new LinearLayoutManager(DailyActivity.this));
-*/
-                    MainActivity.task_collection.add(add_task);
-                    ta_intance.notifyDataSetChanged();
+
+
                     //ta_intance.notifyDataSetChanged();
                     //ta_intance.notifyItemInserted(MainActivity.task_collection.size() - 1);
                     //ta_intance.notify();

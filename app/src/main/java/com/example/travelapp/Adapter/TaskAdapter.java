@@ -85,12 +85,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHoler> {
                     if(isChecked){
                         cbTask.setPaintFlags(cbTask.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG);
                         single_task.setIs_completed(true);
-                        //single_task.setIs_completed(1);
                         MainActivity.db_helper_instance.update_completion_status_in_db(single_task);
                     }else{
                         cbTask.setPaintFlags(cbTask.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
                         single_task.setIs_completed(false);
-                        //single_task.setIs_completed(0);
                     }
                     //update the info in db
                     MainActivity.db_helper_instance.update_completion_status_in_db(single_task);
