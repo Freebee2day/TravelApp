@@ -4,6 +4,7 @@
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
 2. [Schema](#Schema)
+3. [Walkthrough](#Walkthrough)
 
 ## Overview
 ### Description
@@ -128,8 +129,7 @@ client.close();
     `GET`    | /regions/byId/:id | gets specific region by :id
     
     
-## Walk through of the app
- 
+## Walkthrough 
 ### Overview: switch between Flight and Schedule fragments with buttom navigation view.
 <img src='https://github.com/Freebee2day/TravelApp/blob/main/TravelApp_Fragments.gif' title='Fragments Walkthrough' width='' alt='Fragments Walkthrough' />
     
