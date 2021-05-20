@@ -16,8 +16,8 @@ Product Specs
 Required Must-have Stories
 
 #### Search Activity
-	[x] Find flight information by typing in destination
-	[x] Enter inbound information with dates
+[x] Find flight information by typing in destination
+[x] Enter inbound information with dates
 
  
 #### Result Activity
@@ -111,6 +111,24 @@ client.close();
     `GET`    | /regions/byId/:id | gets specific region by :id
     
     
- ### Walk through of the app
+## Walk through of the app
  
-    https://imgur.com/a/VtIK7Dw
+### Overview: switch between Flight and Schedule fragments with buttom navigation view.
+<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />
+    
+### Flight Searching Fragment: 
+Search for flight with Skyscanner Flight Search API.
+Enter departing & arriving cities, select date on calendar with datepicker.
+<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />	
+	
+RecyclerView to display the flight results. Users can choose their preferred flight and add it to calendar.
+<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />
+    
+### Itinerary Planning Fragment:
+Plan travel events on calendar.  Click date to view the events/tasks on the selected date.
+<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Data is saved in Android Studio SQLite: allow users to add tasks, remove task upon long press, and update task (check off).
+<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />
+
+
