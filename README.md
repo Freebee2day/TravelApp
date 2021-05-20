@@ -114,21 +114,21 @@ client.close();
 ## Walk through of the app
  
 ### Overview: switch between Flight and Schedule fragments with buttom navigation view.
-<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Freebee2day/TravelApp/blob/main/TravelApp_Fragments.gif' title='Fragments Walkthrough' width='' alt='Fragments Walkthrough' />
     
 ### Flight Searching Fragment: 
 Search for flight with Skyscanner Flight Search API.
 Enter departing & arriving cities, select date on calendar with datepicker.
-<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />	
+<img src='https://github.com/Freebee2day/TravelApp/blob/main/TravelApp_Flight_Search.gif' title='Search Flight Walkthrough' width='' alt='Search Flight Walkthrough' />	
 	
 RecyclerView to display the flight results. Users can choose their preferred flight and add it to calendar.
-<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Freebee2day/TravelApp/blob/main/TravelApp_Flight_Result.gif' title='Flight Result Walkthrough' width='' alt='Flight Result Walkthrough' />
     
 ### Itinerary Planning Fragment:
 Plan travel events on calendar.  Click date to view the events/tasks on the selected date.
-<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Freebee2day/TravelApp/blob/main/TravelApp_Flight_Added.gif' title='Add Flight Walkthrough' width='' alt='Add Flight Walkthrough' />
 
 Data is saved in Android Studio SQLite: allow users to add tasks, remove task upon long press, and update task (check off).
-<img src='https://github.com/Freebee2day/Chatty/blob/main/Chatty_I.gif' title='Full Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/Freebee2day/TravelApp/blob/main/TravelApp_Calendar_Tasks.gif' title='Tasks Walkthrough' width='' alt='Tasks Walkthrough' />
 
 
